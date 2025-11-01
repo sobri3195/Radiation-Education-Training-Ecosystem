@@ -242,8 +242,8 @@ export default function GSheetDataPage() {
                   </p>
                   <ol className="text-sm text-yellow-700 space-y-1 ml-5 list-decimal">
                     <li>Deploy as Web App</li>
-                    <li>Set "Execute as" to "Me"</li>
-                    <li>Set "Who has access" to "Anyone"</li>
+                    <li>Set &quot;Execute as&quot; to &quot;Me&quot;</li>
+                    <li>Set &quot;Who has access&quot; to &quot;Anyone&quot;</li>
                     <li>Return data as JSON format</li>
                   </ol>
                 </div>
