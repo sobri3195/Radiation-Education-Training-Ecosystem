@@ -87,11 +87,23 @@ npm run dev
 
 ### Google Sheets API Setup
 
+You can connect to Google Sheets in two ways:
+
+#### Option 1: Direct Google Sheets API
+
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select existing one
 3. Enable Google Sheets API
 4. Create credentials (API Key)
 5. Add the API key to your `.env` file
+
+#### Option 2: Google Apps Script (Recommended)
+
+1. Create a Google Apps Script web app
+2. Deploy it with public access
+3. Add the script URL to your `.env` file
+
+For detailed setup instructions, see [GSHEET_APPS_SCRIPT_SETUP.md](./GSHEET_APPS_SCRIPT_SETUP.md)
 
 ### Google Sheets Structure
 
@@ -115,6 +127,9 @@ Each module requires a Google Sheet with specific columns. Example structure:
 - ✅ Modern, responsive admin panel
 - ✅ Interactive sidebar navigation
 - ✅ Real-time data from Google Sheets
+- ✅ Google Apps Script integration
+- ✅ CSV upload to Google Sheets
+- ✅ Data export functionality
 - ✅ BED/EQD₂ calculator with live results
 - ✅ Clinical case management
 - ✅ Myth-busting module
