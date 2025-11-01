@@ -1,9 +1,20 @@
 'use client';
 
-import React from 'react';
-import { Heart, AlertCircle, Plus } from 'lucide-react';
+import React, { useState } from 'react';
+import { Heart, AlertCircle, Plus, Edit2, Trash2 } from 'lucide-react';
+import Modal from '@/components/Modal';
+import ConfirmDialog from '@/components/ConfirmDialog';
 
-const sideEffects = [
+interface SideEffect {
+  id: number;
+  name: string;
+  description: string;
+  severity: 'mild' | 'moderate' | 'severe';
+  management: string;
+  frequency: string;
+}
+
+const initialSideEffects: SideEffect[] = [
   {
     id: 1,
     name: 'Fatigue (Kelelahan)',
@@ -54,6 +65,86 @@ const severityConfig = {
 };
 
 export default function SideEffectsPage() {
+  const [sideEffects, setSideEffects] = useState<SideEffect[]>(initialSideEffects);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [editingEffect, setEditingEffect] = useState<SideEffect | null>(null);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
+  const [formData, setFormData] = useState<Omit<SideEffect, 'id'>>({
+    name: '',
+    description: '',
+    severity: 'mild',
+    management: '',
+    frequency: '',
+  });
+
+  const handleOpenModal = (effect?: SideEffect) => {
+    if (effect) {
+      setEditingEffect(effect);
+      setFormData({
+        name: effect.name,
+        description: effect.description,
+        severity: effect.severity,
+        management: effect.management,
+        frequency: effect.frequency,
+      });
+    } else {
+      setEditingEffect(null);
+      setFormData({
+        name: '',
+        description: '',
+        severity: 'mild',
+        management: '',
+        frequency: '',
+      });
+    }
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingEffect(null);
+    setFormData({
+      name: '',
+      description: '',
+      severity: 'mild',
+      management: '',
+      frequency: '',
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (editingEffect) {
+      setSideEffects(sideEffects.map(s => 
+        s.id === editingEffect.id 
+          ? { ...editingEffect, ...formData }
+          : s
+      ));
+    } else {
+      const newEffect: SideEffect = {
+        id: Math.max(...sideEffects.map(s => s.id), 0) + 1,
+        ...formData,
+      };
+      setSideEffects([...sideEffects, newEffect]);
+    }
+    
+    handleCloseModal();
+  };
+
+  const handleDelete = (id: number) => {
+    setDeletingId(id);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (deletingId) {
+      setSideEffects(sideEffects.filter(s => s.id !== deletingId));
+      setDeletingId(null);
+    }
+  };
+
   return (
     <div className="p-6 lg:p-8 space-y-6">
       <div className="flex items-center justify-between">
@@ -65,7 +156,10 @@ export default function SideEffectsPage() {
             Manajemen & Perawatan Rumah
           </p>
         </div>
-        <button className="px-6 py-3 bg-gradient-to-r from-radiate-purple to-radiate-blue text-white rounded-lg font-semibold hover:shadow-lg transition-all flex items-center gap-2">
+        <button 
+          onClick={() => handleOpenModal()}
+          className="px-6 py-3 bg-gradient-to-r from-radiate-purple to-radiate-blue text-white rounded-lg font-semibold hover:shadow-lg transition-all flex items-center gap-2"
+        >
           <Plus className="w-5 h-5" />
           Tambah Efek Samping
         </button>
@@ -109,8 +203,7 @@ export default function SideEffectsPage() {
               <div
                 key={effect.id}
                 className={`border-2 rounded-xl p-6 ${
-                  severityConfig[effect.severity as keyof typeof severityConfig]
-                    .color
+                  severityConfig[effect.severity].color
                 }`}
               >
                 <div className="flex items-start justify-between mb-4">
@@ -120,11 +213,7 @@ export default function SideEffectsPage() {
                         {effect.name}
                       </h3>
                       <span className="px-3 py-1 bg-white rounded-full text-xs font-semibold">
-                        {
-                          severityConfig[
-                            effect.severity as keyof typeof severityConfig
-                          ].label
-                        }
+                        {severityConfig[effect.severity].label}
                       </span>
                     </div>
                     <p className="text-slate-700 mb-2">{effect.description}</p>
@@ -132,9 +221,20 @@ export default function SideEffectsPage() {
                       Frekuensi: {effect.frequency}
                     </span>
                   </div>
-                  <button className="px-4 py-2 text-sm font-medium text-radiate-purple hover:bg-purple-50 rounded-lg transition-colors">
-                    Edit
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={() => handleOpenModal(effect)}
+                      className="p-2 text-radiate-purple hover:bg-purple-50 rounded-lg transition-colors"
+                    >
+                      <Edit2 className="w-4 h-4" />
+                    </button>
+                    <button 
+                      onClick={() => handleDelete(effect.id)}
+                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-300">
@@ -172,6 +272,114 @@ export default function SideEffectsPage() {
           </p>
         </div>
       </div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        title={editingEffect ? 'Edit Efek Samping' : 'Tambah Efek Samping Baru'}
+        maxWidth="2xl"
+      >
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">
+              Nama Efek Samping
+            </label>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-radiate-purple focus:border-transparent"
+              required
+              placeholder="Contoh: Fatigue (Kelelahan)"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">
+              Deskripsi
+            </label>
+            <textarea
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-radiate-purple focus:border-transparent"
+              rows={3}
+              required
+              placeholder="Jelaskan efek samping ini..."
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Tingkat Keparahan
+              </label>
+              <select
+                value={formData.severity}
+                onChange={(e) => setFormData({ ...formData, severity: e.target.value as 'mild' | 'moderate' | 'severe' })}
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-radiate-purple focus:border-transparent"
+              >
+                <option value="mild">Ringan</option>
+                <option value="moderate">Sedang</option>
+                <option value="severe">Berat</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Frekuensi
+              </label>
+              <input
+                type="text"
+                value={formData.frequency}
+                onChange={(e) => setFormData({ ...formData, frequency: e.target.value })}
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-radiate-purple focus:border-transparent"
+                required
+                placeholder="Contoh: Sangat Umum (>80%)"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">
+              Manajemen & Perawatan
+            </label>
+            <textarea
+              value={formData.management}
+              onChange={(e) => setFormData({ ...formData, management: e.target.value })}
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-radiate-purple focus:border-transparent"
+              rows={3}
+              required
+              placeholder="Jelaskan cara mengelola efek samping ini..."
+            />
+          </div>
+
+          <div className="flex items-center gap-3 justify-end pt-4 border-t border-slate-200">
+            <button
+              type="button"
+              onClick={handleCloseModal}
+              className="px-6 py-2.5 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition-colors"
+            >
+              Batal
+            </button>
+            <button
+              type="submit"
+              className="px-6 py-2.5 bg-gradient-to-r from-radiate-purple to-radiate-blue text-white rounded-lg font-medium hover:shadow-lg transition-all"
+            >
+              {editingEffect ? 'Simpan Perubahan' : 'Tambah Efek Samping'}
+            </button>
+          </div>
+        </form>
+      </Modal>
+
+      <ConfirmDialog
+        isOpen={isDeleteDialogOpen}
+        onClose={() => setIsDeleteDialogOpen(false)}
+        onConfirm={confirmDelete}
+        title="Hapus Efek Samping?"
+        message="Apakah Anda yakin ingin menghapus efek samping ini? Tindakan ini tidak dapat dibatalkan."
+        confirmText="Hapus"
+        cancelText="Batal"
+      />
     </div>
   );
 }
