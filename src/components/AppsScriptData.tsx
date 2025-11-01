@@ -37,6 +37,7 @@ export default function AppsScriptData({
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scriptUrl]);
 
   return (
