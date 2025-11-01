@@ -78,6 +78,51 @@ export async function appendSheetData(
   }
 }
 
+export async function fetchFromAppsScript(scriptUrl: string): Promise<any[]> {
+  try {
+    const response = await fetch(scriptUrl, {
+      method: 'GET',
+      redirect: 'follow',
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch from Apps Script: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching from Apps Script:', error);
+    return [];
+  }
+}
+
+export async function postToAppsScript(
+  scriptUrl: string,
+  data: any
+): Promise<any> {
+  try {
+    const response = await fetch(scriptUrl, {
+      method: 'POST',
+      redirect: 'follow',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to post to Apps Script: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error('Error posting to Apps Script:', error);
+    return null;
+  }
+}
+
 export const SHEET_CONFIGS = {
   clinicalCases: {
     spreadsheetId: process.env.NEXT_PUBLIC_CLINICAL_CASES_SHEET_ID || '',
@@ -111,4 +156,8 @@ export const SHEET_CONFIGS = {
     spreadsheetId: process.env.NEXT_PUBLIC_BED_CALCULATIONS_SHEET_ID || '',
     range: 'Calculations!A1:Z1000',
   },
+};
+
+export const APPS_SCRIPT_URLS = {
+  main: process.env.NEXT_PUBLIC_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbxGncifVlfMo2KvZEW5EzAh_Y1CSjqeM3Pgp46Z6d7IIflHoAcvHQ1G2HUV1JzrrWIOyA/exec',
 };

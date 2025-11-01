@@ -18,6 +18,7 @@ import {
   X,
   LayoutDashboard,
   Radiation,
+  Database,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -107,6 +108,13 @@ const navItems: NavItem[] = [
     icon: <Table2 className="w-5 h-5" />,
     category: 'clinical',
   },
+  {
+    id: 'gsheet-data',
+    name: 'Google Sheets Data',
+    path: '/admin/gsheet-data',
+    icon: <Database className="w-5 h-5" />,
+    category: 'data',
+  },
 ];
 
 const categoryLabels = {
@@ -115,6 +123,7 @@ const categoryLabels = {
   training: 'Pelatihan',
   clinical: 'Klinik',
   public: 'Publik',
+  data: 'Data Management',
 };
 
 export default function Sidebar() {
