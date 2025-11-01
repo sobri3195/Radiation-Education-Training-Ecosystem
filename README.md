@@ -19,10 +19,13 @@ Frontend-only platform yang terhubung langsung dengan **Google Sheet sebagai dat
 - **Framework:** Next.js 14 (React)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
 - **Icons:** Lucide React
 - **Charts:** Recharts
 - **Database:** Google Sheets API
 - **Data Fetching:** SWR
+- **Data Export:** jsPDF, jspdf-autotable, xlsx
+- **Deployment:** Netlify
 
 ## 🧱 Modul Platform
 
@@ -129,7 +132,7 @@ Each module requires a Google Sheet with specific columns. Example structure:
 - ✅ Real-time data from Google Sheets
 - ✅ Google Apps Script integration
 - ✅ CSV upload to Google Sheets
-- ✅ Data export functionality
+- ✅ Data export functionality (PDF & Excel)
 - ✅ BED/EQD₂ calculator with live results
 - ✅ Clinical case management
 - ✅ Myth-busting module
@@ -138,6 +141,10 @@ Each module requires a Google Sheet with specific columns. Example structure:
 - ✅ Patient journey timeline
 - ✅ Side effects management
 - ✅ Therapy modalities table
+- ✅ **Smooth animations with Framer Motion**
+- ✅ **Interactive DataTables with sorting, searching & pagination**
+- ✅ **Export data to PDF and Excel formats**
+- ✅ **Netlify deployment ready**
 
 ## 📝 Scripts
 
@@ -146,6 +153,25 @@ Each module requires a Google Sheet with specific columns. Example structure:
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
 - `npm run type-check` - Run TypeScript type checking
+
+## 🚀 Netlify Deployment
+
+This project is configured for easy deployment on Netlify:
+
+1. **Connect your repository** to Netlify
+2. Netlify will **automatically detect** the build settings from `netlify.toml`
+3. **Set environment variables** in Netlify dashboard if needed:
+   - Add your Google Sheets API credentials
+   - Any other environment variables from `.env.example`
+4. **Deploy!** Netlify will automatically build and deploy your site
+
+### Build Settings (Auto-configured)
+- **Build command:** `npm run build`
+- **Publish directory:** `.next`
+- **Node version:** 20
+
+### Demo Page
+Visit `/demo` to see the animated DataTables with PDF/Excel export functionality.
 
 ## 🤝 Contributing
 

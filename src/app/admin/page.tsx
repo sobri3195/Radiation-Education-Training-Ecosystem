@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import {
   Activity,
   Users,
@@ -8,6 +9,7 @@ import {
   TrendingUp,
   Calendar,
   Database,
+  ExternalLink,
 } from 'lucide-react';
 
 interface StatCard {
@@ -90,16 +92,25 @@ export default function AdminDashboard() {
             Selamat datang di RADIATE Admin Panel
           </p>
         </div>
-        <div className="flex items-center gap-2 text-slate-600">
-          <Calendar className="w-5 h-5" />
-          <span className="text-sm">
-            {new Date().toLocaleDateString('id-ID', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </span>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/demo"
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg hover:from-indigo-600 hover:to-purple-600 transition-all shadow-md hover:shadow-lg"
+          >
+            <ExternalLink className="w-4 h-4" />
+            <span className="text-sm font-medium">Lihat Demo</span>
+          </Link>
+          <div className="flex items-center gap-2 text-slate-600">
+            <Calendar className="w-5 h-5" />
+            <span className="text-sm">
+              {new Date().toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </span>
+          </div>
         </div>
       </div>
 
