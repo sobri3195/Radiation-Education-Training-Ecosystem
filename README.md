@@ -1,14 +1,15 @@
-# RADIATE - Radiation Education & Training Ecosystem
+# RADIATE Admin Panel - Radiation Education & Training Management System
 
-**Tagline:** Edukasi Publik, Pelatihan Dokter, dan Literasi Radiasi dalam Satu Platform Digital Interaktif
+**Tagline:** Panel Administrasi Komprehensif untuk Mengelola Edukasi Radiasi Onkologi
 
 ## 🎯 Tujuan Utama
 
-RADIATE bertujuan menjadi ekosistem digital edukasi dan pelatihan onkologi radiasi berbasis data dan simulasi, yang:
+RADIATE Admin Panel adalah sistem manajemen konten untuk platform edukasi dan pelatihan onkologi radiasi, yang memungkinkan administrator untuk:
 
-- Meningkatkan literasi masyarakat terhadap terapi radiasi dan kanker
-- Mendukung pembelajaran klinik dokter muda/residen
-- Membuka partisipasi dokter di seluruh Indonesia dalam mengedukasi publik lewat data terstandar di Google Sheet
+- Mengelola konten edukasi publik tentang terapi radiasi dan kanker
+- Mengatur kasus klinik dan modul pelatihan untuk dokter muda/residen
+- Mengelola data dari Google Sheets sebagai database dinamis
+- Memantau statistik pengguna dan aktivitas platform
 
 ## 🧩 Konsep Inti
 
@@ -27,37 +28,57 @@ Frontend-only platform yang terhubung langsung dengan **Google Sheet sebagai dat
 - **Data Export:** jsPDF, jspdf-autotable, xlsx
 - **Deployment:** Netlify
 
-## 🧱 Modul Platform
+## 🧱 Fitur Admin Panel
 
-### 1️⃣ EduRadi — Pusat Edukasi Publik
-Infografik interaktif tentang terapi radiasi, statistik dinamis dari Google Sheet, dan animasi visual interaktif.
+### 📊 Dashboard Utama
+- Overview statistik platform (pengguna, konten, engagement)
+- Aktivitas terkini dari semua modul
+- Status koneksi Google Sheets
+- Quick actions untuk modul populer
 
-### 2️⃣ SimuDose — BED/EQD₂ Interactive Visualizer
-Kalkulator radiobiologi dengan visualisasi grafik BED dan EQD₂ secara real-time.
+### 📚 Manajemen Konten Edukasi (EduRadi)
+- Editor artikel dan infografik interaktif
+- Manajemen FAQ publik
+- MythBuster - kelola mitos vs fakta radiasi
+- Database referensi literatur
 
-### 3️⃣ OncoCase Trainer
-Kumpulan kasus klinik nyata dengan skor otomatis untuk pembelajaran berbasis kasus.
+### 🎓 Simulasi & Pelatihan
+- **SimuDose**: Konfigurasi α/β ratio dan preset BED/EQD₂
+- **OncoCase Trainer**: Bank kasus klinik dengan editor skenario
+- **Mini-Lab**: Soal latihan dan paket ujian radioterapi
 
-### 4️⃣ MythBuster Radiasi
-Quiz interaktif tentang mitos umum radioterapi dengan jawaban berbasis literatur.
+### 🗺️ Peta Pengetahuan (OncoMap)
+- Manajemen batas dosis Organ-at-Risk (QUANTEC)
+- Database teknik radiasi (IMRT/VMAT/3D-CRT/SBRT)
+- Catatan klinis dan tips praktis
 
-### 5️⃣ OncoMap — Peta Pengetahuan Anatomi dan Dosis
-Peta tubuh interaktif dengan rekomendasi dosis maksimum berdasarkan guideline QUANTEC.
+### 🏥 Perjalanan Pasien
+- Editor timeline patient journey
+- Materi edukasi pre-treatment dan follow-up
+- Panduan efek samping dan perawatan rumah
+- Red flags dan indikasi rujukan
 
-### 6️⃣ Kanker di Sekitarku
-Visualisasi peta interaktif data kanker per provinsi.
+### 📈 Data & Visualisasi
+- **Kanker di Sekitarku**: Data insidensi kanker per wilayah
+- **Tabel Modalitas Terapi**: Indikasi radiasi dan kombinasi terapi
+- Anonimisasi dan validasi data
 
-### 7️⃣ Mini-Lab Radioterapi
-Sesi latihan virtual berbasis soal klinik dengan skor otomatis.
+### 🔗 Integrasi Google Sheets
+- Konfigurasi koneksi dan kredensial
+- Pemetaan Sheet ↔ Modul
+- Validasi struktur kolom dan data
+- Import/Export template
 
-### 8️⃣ Patient Journey
-Timeline visual dari diagnosis hingga follow-up.
+### 👥 Manajemen Pengguna
+- Daftar pengguna dan aktivitas
+- Peran dan hak akses
+- Audit log lengkap
 
-### 9️⃣ Panduan Efek Samping & Perawatan Rumah
-Modul interaktif dengan panduan perawatan mandiri.
-
-### 🔟 OncoTheraTable — Tabel Modalitas Terapi
-Tabel interaktif kanker dan modalitas terapi berbasis bukti.
+### ⚙️ Pengaturan
+- Branding dan tema
+- Bahasa dan lokalisasi
+- Privasi dan anonimisasi data
+- Backup dan restore
 
 ## 📦 Installation
 
@@ -125,26 +146,40 @@ Each module requires a Google Sheet with specific columns. Example structure:
 - Column C: Reference
 - Column D: Status
 
-## 🎨 Features
+## ✨ Fitur Unggulan
 
-- ✅ Modern, responsive admin panel
-- ✅ Interactive sidebar navigation
-- ✅ Real-time data from Google Sheets
-- ✅ Google Apps Script integration
-- ✅ CSV upload to Google Sheets
-- ✅ Data export functionality (PDF & Excel)
-- ✅ BED/EQD₂ calculator with live results
-- ✅ Clinical case management
-- ✅ Myth-busting module
-- ✅ Organ dose guidelines
+### 🎨 UI/UX Modern
+- ✅ Desain admin panel modern dan responsif
+- ✅ Sidebar navigasi interaktif dengan struktur hierarkis
+- ✅ Dashboard statistik real-time dengan chart dan grafik
+- ✅ Smooth animations dengan Framer Motion
+- ✅ Dark theme untuk sidebar, light theme untuk konten
+
+### 📊 Manajemen Data
+- ✅ Integrasi langsung dengan Google Sheets API
+- ✅ Google Apps Script web app integration
+- ✅ CSV upload dan import data bulk
+- ✅ Export data ke format PDF & Excel
+- ✅ Interactive DataTables dengan sorting, searching & pagination
+- ✅ Validasi dan anonimisasi data otomatis
+
+### 🛠️ Modul Administrasi
+- ✅ BED/EQD₂ calculator dengan preset dan template
+- ✅ Clinical case editor dengan skenario interaktif
+- ✅ Myth-busting database management
+- ✅ Organ dose guidelines (QUANTEC)
 - ✅ Regional cancer data visualization
-- ✅ Patient journey timeline
-- ✅ Side effects management
-- ✅ Therapy modalities table
-- ✅ **Smooth animations with Framer Motion**
-- ✅ **Interactive DataTables with sorting, searching & pagination**
-- ✅ **Export data to PDF and Excel formats**
-- ✅ **Netlify deployment ready**
+- ✅ Patient journey timeline builder
+- ✅ Side effects & home care guide management
+- ✅ Therapy modalities table editor
+
+### 🚀 Technical Features
+- ✅ Next.js 14 dengan App Router
+- ✅ TypeScript untuk type safety
+- ✅ Tailwind CSS untuk styling
+- ✅ SWR untuk data fetching dan caching
+- ✅ Client-side rendering (CSR) untuk performa optimal
+- ✅ Netlify deployment ready dengan auto-configuration
 
 ## 📝 Scripts
 
@@ -170,24 +205,35 @@ This project is configured for easy deployment on Netlify:
 - **Publish directory:** `.next`
 - **Node version:** 20
 
-### Demo Page
-Visit `/demo` to see the animated DataTables with PDF/Excel export functionality.
+### Demo & Preview
+- Visit the root `/` to see automatic redirect to admin panel
+- Visit `/demo` to see animated DataTables with PDF/Excel export functionality
+- Explore different admin modules from the sidebar navigation
+
+## 🎯 Target Pengguna
+
+- **Administrator Platform:** Mengelola seluruh konten dan konfigurasi
+- **Content Curator:** Dokter spesialis yang mengelola konten edukatif
+- **Data Manager:** Mengelola data statistik dan Google Sheets integration
+- **Training Coordinator:** Mengatur modul pelatihan dan kasus klinik
+
+## 🔐 Peran & Akses
+
+Admin Panel mendukung beberapa tingkat akses:
+- **Super Admin:** Full access ke semua modul
+- **Content Manager:** Akses ke modul edukasi dan konten
+- **Training Manager:** Akses ke modul simulasi dan pelatihan
+- **Data Analyst:** Akses ke laporan dan visualisasi data
+- **Editor:** Akses terbatas untuk edit konten tertentu
 
 ## 🤝 Contributing
 
-Contributions are welcome! This platform is designed to be collaboratively maintained by radiation oncology professionals.
+Kontribusi sangat diterima! Platform ini dirancang untuk dikelola secara kolaboratif oleh profesional onkologi radiasi dan developer.
 
 ## 📄 License
 
-This project is created for educational and medical training purposes.
-
-## 👥 Target Users
-
-- **Masyarakat Umum:** Edukasi dan literasi radiasi
-- **Dokter Muda/Residen:** Pembelajaran klinik dan pelatihan
-- **Dokter Spesialis:** Kontributor konten edukatif
-- **Mahasiswa Kedokteran:** Referensi dan latihan
+Project ini dibuat untuk tujuan edukasi dan pelatihan medis.
 
 ## 🌟 Vision
 
-Menjadikan RADIATE sebagai platform rujukan utama untuk edukasi dan pelatihan onkologi radiasi di Indonesia.
+Menjadikan RADIATE Admin Panel sebagai sistem manajemen konten terbaik untuk platform edukasi onkologi radiasi di Indonesia.

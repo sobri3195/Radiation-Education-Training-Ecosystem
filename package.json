@@ -1,7 +1,7 @@
 {
-  "name": "radiate-platform",
+  "name": "radiate-admin-panel",
   "version": "1.0.0",
-  "description": "RADIATE - Radiation Education & Training Ecosystem",
+  "description": "RADIATE Admin Panel - Radiation Education & Training Management System",
   "private": true,
   "scripts": {
     "dev": "next dev",

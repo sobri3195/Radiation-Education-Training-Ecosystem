@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'RADIATE - Radiation Education & Training Ecosystem',
-  description: 'Edukasi Publik, Pelatihan Dokter, dan Literasi Radiasi dalam Satu Platform Digital Interaktif',
+  title: 'RADIATE Admin Panel - Radiation Education & Training Management',
+  description: 'Panel administrasi untuk mengelola konten edukasi, pelatihan dokter, dan data radiasi onkologi',
 };
 
 export default function RootLayout({
