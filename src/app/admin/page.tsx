@@ -85,14 +85,14 @@ const recentActivities = [
 export default function AdminDashboard() {
   return (
     <div className="p-6 lg:p-8 space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
+          <h1 className="text-3xl lg:text-4xl font-bold text-slate-900">Dashboard Admin</h1>
           <p className="text-slate-600 mt-1">
-            Selamat datang di RADIATE Admin Panel
+            Selamat datang di RADIATE Admin Panel - Kelola konten edukasi dan pelatihan radiasi onkologi
           </p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <Link
             href="/demo"
             className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg hover:from-indigo-600 hover:to-purple-600 transition-all shadow-md hover:shadow-lg"

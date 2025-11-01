@@ -1,11 +1,11 @@
-# 🚀 Quick Start Guide - RADIATE Platform
+# 🚀 Quick Start Guide - RADIATE Admin Panel
 
 ## Instalasi dan Menjalankan
 
 ### 1. Clone Repository
 ```bash
 git clone <repository-url>
-cd radiate-platform
+cd radiate-admin-panel
 ```
 
 ### 2. Install Dependencies
@@ -20,81 +20,139 @@ npm run dev
 
 Buka browser dan akses: `http://localhost:3000`
 
+Aplikasi akan otomatis redirect ke `/admin` - Dashboard Admin Panel
+
 ### 4. Build untuk Production
 ```bash
 npm run build
 npm start
 ```
 
-## 🎯 Navigasi Platform
+## 🎯 Navigasi Admin Panel
 
-### Halaman Utama (/)
-Dashboard utama dengan 5 kategori fitur:
-1. 🎓 **Edukasi & Pembelajaran** - Educational modules
-2. 🤖 **AI & Interaktif** - AI-powered features
-3. 🏆 **Gamifikasi** - XP, badges, challenges
-4. 🎨 **Visual & UX** - Themes, history, learning path
-5. 🔬 **Profesional & Riset** - Advanced tools
+### Dashboard Utama (/admin)
+Dashboard dengan overview lengkap:
+- 📊 **Statistik Platform** - Pengguna, konten, engagement
+- 📝 **Aktivitas Terkini** - Log aktivitas dari semua modul
+- 🔗 **Status Google Sheets** - Koneksi dan jumlah records
+- 🚀 **Quick Actions** - Akses cepat ke modul populer
 
-### Quick Links
+### Struktur Sidebar Navigation
 
-#### Untuk Pemula:
-1. Start dengan **Mini Quiz** (`/learn/quiz`) - Uji pengetahuan dasar
-2. Explore **3D Anatomy Viewer** (`/learn/anatomy-3d`) - Visualisasi organ
-3. Try **AI Tutor** (`/ai/tutor`) - Tanya jawab interaktif
+#### 📊 DASHBOARD
+- **Overview** - Dashboard utama dengan statistik
 
-#### Untuk Dokter Muda:
-1. **Case Simulation** (`/learn/case-simulation`) - Praktik kasus klinik
-2. **Machine Tour** (`/learn/machine-tour`) - Kenali peralatan radioterapi
-3. **Physics Visualizer** (`/learn/physics`) - Pahami fisika radiasi
+#### 📚 KONTEN EDUKASI (EduRadi)
+- **Artikel & Infografik** - Kelola konten edukasi publik
+- **FAQ Publik** - Database pertanyaan umum
+- **MythBuster Radiasi** - Mitos vs fakta
+- **Referensi Literatur** - Database referensi
 
-#### Untuk Advanced Learners:
-1. **Daily Challenge** (`/game/daily-challenge`) - Challenge harian
-2. **Badges** (`/game/badges`) - Unlock achievements
-3. **Flashcards** (`/ai/flashcards`) - Buat kartu belajar kustom
+#### 🎓 SIMULASI & PELATIHAN
+- **SimuDose (BED/EQD₂)** - Konfigurasi kalkulator radiobiologi
+- **OncoCase Trainer** - Bank kasus klinik dan editor skenario
+- **Mini-Lab Radioterapi** - Soal latihan dan paket ujian
 
-## 💡 Tips Penggunaan
+#### 🗺️ PETA PENGETAHUAN (OncoMap)
+- **Organ-at-Risk (OAR)** - Batas dosis QUANTEC
+- **Teknik & Modalitas** - IMRT/VMAT/3D-CRT/SBRT
 
-### Mendapatkan XP:
-- ✅ Complete quiz questions (+10 XP per correct)
-- ✅ Perfect quiz score (+50 XP bonus)
-- ✅ Complete case simulations (+10-15 XP per question)
-- ✅ Daily challenge completion (+25 XP)
-- ✅ Explore anatomy viewer (+5 XP per organ)
-- ✅ Ask AI tutor questions (+5 XP)
-- ✅ Create flashcards (+10 XP)
+#### 🏥 PERJALANAN PASIEN
+- **Patient Journey** - Timeline tahapan perawatan
+- **Panduan Efek Samping** - Gejala dan perawatan rumah
 
-### Unlock Badges:
-1. **Peserta Pertama** - Complete your first quiz
-2. **Quiz Master** - Get perfect score on 10 quizzes
-3. **RadBio Master** - Explore spinal cord in anatomy viewer
-4. **OncoPlanner** - Successfully complete clinical cases
-5. **Daily Learner** - Complete 7 daily challenges in a row
+#### 📈 DATA & VISUALISASI
+- **Kanker di Sekitarku** - Peta insidensi regional
+- **Tabel Modalitas Terapi** - Indikasi dan kombinasi
 
-### Best Learning Path:
+#### 📊 LAPORAN
+- **Laporan Edukasi** - Analytics konten edukasi
+- **Laporan Pelatihan** - Statistik pelatihan
+- **Laporan Simulasi** - Data penggunaan simulasi
+- **Ekspor PDF/CSV** - Export semua data
+
+#### 🔗 GOOGLE SHEETS
+- **Koneksi & Kredensial** - Konfigurasi API
+- **Pemetaan Sheet ↔ Modul** - Mapping data sources
+- **Validasi Kolom & Data** - Data integrity checks
+- **Impor/Ekspor Template** - Template management
+
+#### 👥 PENGGUNA & PERAN
+- **Daftar Pengguna** - User management
+- **Peran & Akses** - Role-based access control
+- **Audit Log** - Activity logging
+
+#### ⚙️ PENGATURAN
+- **Branding & Tema** - Customization
+- **Bahasa & Lokalisasi** - i18n settings
+- **Privasi & Anonimisasi** - Data privacy
+- **Integrasi** - Third-party integrations
+- **Cadangan & Restore** - Backup management
+
+#### ❓ BANTUAN
+- **Panduan Admin** - Documentation
+- **SOP Kurasi Konten** - Content guidelines
+- **Kebijakan Etik & Disclaimer** - Ethics policy
+
+## 💡 Tips Penggunaan Admin Panel
+
+### Workflow Content Management:
+
+**1. Setup Awal (First Time)**
 ```
-Week 1: Basics
-├── Mini Quiz (Dasar Radioterapi)
-├── AI Tutor (Basic concepts)
-└── 3D Anatomy Viewer
-
-Week 2: Clinical Application
-├── Case Simulation
-├── Machine Tour
-└── Physics Visualizer
-
-Week 3: Advanced
-├── Daily Challenge
-├── Flashcards
-└── Complete all badges
+1. Konfigurasi Google Sheets Connection
+   └── /admin/gsheet-data
+2. Verifikasi Pemetaan Sheet ↔ Modul
+   └── /admin/sheets/mapping/*
+3. Setup Peran & Akses User
+   └── /admin/users/roles
 ```
+
+**2. Manajemen Konten Harian**
+```
+1. Review Aktivitas Terkini
+   └── Dashboard /admin
+2. Update Konten Edukasi
+   └── /admin/eduradi
+3. Tambah/Edit Kasus Klinik
+   └── /admin/oncocase
+4. Review Laporan
+   └── /admin/reports/*
+```
+
+**3. Maintenance Rutin**
+```
+Weekly:
+├── Validasi data Google Sheets
+├── Review audit log
+└── Update konten FAQ
+
+Monthly:
+├── Export backup data
+├── Review statistik engagement
+└── Update referensi literatur
+```
+
+## 🎨 Fitur UI/UX
+
+### Sidebar Navigation:
+- **Collapsible sections** - Klik untuk expand/collapse
+- **Active indicator** - Highlight halaman aktif
+- **Mobile responsive** - Hamburger menu untuk mobile
+- **Dark theme** - Slate 900 background dengan gradient
+
+### Data Tables:
+- **Sorting** - Klik header kolom untuk sort
+- **Search** - Filter data real-time
+- **Pagination** - Navigasi halaman data
+- **Export** - PDF dan Excel export buttons
+
+### Dashboard Widgets:
+- **Stat cards** - Overview metrics dengan icons
+- **Activity feed** - Real-time activity log
+- **Status indicators** - Color-coded status badges
 
 ## 🔧 Troubleshooting
-
-### Data tidak tersimpan?
-- Pastikan browser mengizinkan localStorage
-- Jangan gunakan mode incognito/private
-- Check browser console untuk errors
 
 ### Build gagal?
 ```bash
@@ -103,79 +161,113 @@ npm install
 npm run build
 ```
 
-### Page tidak loading?
-- Clear browser cache
-- Hard refresh: Ctrl+Shift+R (Windows) / Cmd+Shift+R (Mac)
+### Sidebar tidak muncul di mobile?
+- Klik hamburger menu (☰) di kiri atas
+- Pastikan viewport meta tag ada di HTML
+
+### Data tidak tersimpan?
+- Check browser localStorage permissions
+- Verify Google Sheets API credentials
 - Check browser console untuk errors
 
-## 📱 Mobile Support
+### Page styling rusak?
+```bash
+# Rebuild Tailwind CSS
+npm run dev
+# Hard refresh browser: Ctrl+Shift+R
+```
 
-Platform fully responsive dan dapat diakses dari:
-- ✅ Desktop browsers (Chrome, Firefox, Safari, Edge)
-- ✅ Mobile browsers (Chrome Mobile, Safari Mobile)
-- ✅ Tablet devices
+## 📱 Responsive Design
 
-## 🎓 Untuk Demonstrasi LPDP
+Admin Panel fully responsive:
+- ✅ **Desktop** (1024px+) - Full sidebar + content
+- ✅ **Tablet** (768px-1023px) - Collapsible sidebar
+- ✅ **Mobile** (< 768px) - Hamburger menu + overlay sidebar
 
-### Demo Flow Recommended:
+## 🎓 Untuk Demonstrasi
 
-**1. Introduction (2 min)**
-- Show main dashboard
-- Explain 100% offline capability
-- Demonstrate localStorage data persistence
+### Demo Flow Recommended (10 menit):
 
-**2. Educational Features (3 min)**
-- Interactive 3D Anatomy with dose visualization
-- Case simulation with auto-feedback
-- Quiz system with explanations
+**1. Dashboard Overview (2 min)**
+- Show main admin dashboard
+- Highlight statistik real-time
+- Explain Google Sheets integration
 
-**3. AI Capabilities (2 min)**
-- Local AI tutor (no API needed)
-- Flashcard generator
-- Speech narration
+**2. Content Management (3 min)**
+- Navigate through sidebar modules
+- Demo edit konten edukasi
+- Show MythBuster management
+- Quick add clinical case
 
-**4. Gamification (2 min)**
-- XP and leveling system
-- Achievement badges
-- Daily challenges
+**3. Data Management (2 min)**
+- Show Google Sheets connection
+- Demonstrate CSV import
+- Export data to PDF/Excel
+
+**4. Reporting & Analytics (2 min)**
+- Navigate to laporan section
+- Show visualization charts
+- Export report demo
 
 **5. Technical Highlights (1 min)**
-- Show browser DevTools → localStorage data
-- Demonstrate offline functionality (disconnect internet)
-- Show responsive design on mobile
+- Responsive design (resize browser)
+- Dark sidebar theme
+- Smooth animations
 
 ### Key Talking Points:
-- ✨ **Innovation:** Local AI, offline-first, gamification
-- 📚 **Education:** Interactive learning, case-based, self-paced
-- 🌐 **Accessibility:** Browser-based, no installation, free
-- 🇮🇩 **Local Context:** Indonesian language, relevant cases
-- 💰 **Sustainability:** Low-cost hosting, easy maintenance
+- 🎨 **Modern UI/UX:** Clean, responsive, professional admin interface
+- 📊 **Data-Driven:** Real-time statistics and analytics
+- 🔗 **Google Sheets Integration:** No database needed, easy collaboration
+- 📤 **Export Capabilities:** PDF and Excel export for all data
+- 🚀 **Easy Deployment:** Static site, deploy to Netlify/Vercel
+- 🇮🇩 **Localized:** Full Indonesian language interface
 
-## 🤝 Kontribusi
+## 🛠️ Development
 
-Untuk menambahkan konten:
+### Menambah Modul Baru:
 
-### Tambah Quiz Questions:
-Edit `src/lib/localStorage.ts` → `getDefaultQuizBank()`
+**1. Create Page**
+```bash
+# Create new page di src/app/admin/
+touch src/app/admin/new-module/page.tsx
+```
 
-### Tambah Clinical Cases:
-Edit `src/lib/localStorage.ts` → `getDefaultClinicalCases()`
+**2. Add to Sidebar**
+```typescript
+// Edit src/components/Sidebar.tsx
+// Tambah item baru di navSections array
+```
 
-### Tambah AI Knowledge:
-Edit `src/lib/aiHelper.ts` → `medicalKnowledgeBase`
+**3. Implement UI**
+```typescript
+// Use PageTemplate component
+import PageTemplate from '@/components/PageTemplate';
+```
 
-### Tambah Achievements:
-Edit `src/lib/localStorage.ts` → `getDefaultAchievements()`
+### Menambah Route Google Sheets:
+
+**1. Edit googleSheets.ts**
+```typescript
+// src/lib/googleSheets.ts
+// Tambah function fetch data baru
+```
+
+**2. Use SWR for Data Fetching**
+```typescript
+import useSWR from 'swr';
+const { data, error } = useSWR('/api/endpoint', fetcher);
+```
 
 ## 📞 Support
 
 Untuk pertanyaan atau issues:
-1. Check documentation: `INTERACTIVE_FEATURES.md`
-2. Review code comments
-3. Check browser console for errors
+1. Check documentation files (*.md)
+2. Review component code comments
+3. Check browser console untuk errors
+4. Review Google Sheets API documentation
 
 ---
 
-**Happy Learning! 🎓**
+**Happy Managing! 🎉**
 
-*RADIATE Platform - Transforming Radiation Oncology Education in Indonesia*
+*RADIATE Admin Panel - Professional Content Management for Radiation Oncology Education*
